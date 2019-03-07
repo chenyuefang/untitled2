@@ -1,5 +1,4 @@
 
-
 # 1. 查找部门 30 中员工的详细信息
 select *
 from scott.dept

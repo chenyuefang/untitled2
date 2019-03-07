@@ -30,7 +30,7 @@ alter table db_school.student
 add constraint
 student_fk_departmentId
 foreign key (departmentId)
-references db_school.departmenr;
+references db_school.department(id);
 
 select *
 from  db_school.department;

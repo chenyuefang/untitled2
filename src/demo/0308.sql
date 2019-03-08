@@ -41,11 +41,41 @@ from emp
 
 -- limit 在 order by 后面
 
+select ENAME
+from emp
+# where ENAME like  'A%S';  -- 姓名以A开始以S结束   模糊查询
+where ENAME  not like  'A%S';  -- 不能以A开始同时不能以S结束
 
+select *
+from emp
+where ENAME like  '_COOT'; -- _表示一个字符
 
+select *
+from emp
+where ENAME like  '%\_%' escape  '\\'; --  查询含有下划线的名字
 
+update scott.emp
+set ENAME = 'sco_tt' where ENAME ='scott';
 
+select *
+from emp
+# where JOB='salesamn' or JOB='manager' or JOB='president';
+where JOB in ('salesamn' , 'manager' ,'president');
 
+select *
+from emp
+where SAL between 2000 and 3000;-- 闭区间
+
+show tables from scott;
+
+show full columns from emp;
+
+select e.ename as  '员工 姓名'
+from emp as e;
+
+select *
+from scott.emp
+where COMM is unll;
 
 
 

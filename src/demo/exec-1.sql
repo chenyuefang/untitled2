@@ -50,12 +50,22 @@ where ENAME not like '%R%';
 # 14. 找出员工名字的前3个字符
 
 # 15. 将名字中 A 改为 a
-
+update scott.emp
+set ENAME = '%A%' where ENAME ='%a%';
 # 16. 将员工的雇佣日期拖后 10 年
-# 17. 返回员工的详细信息并按姓名排序
 
+# 17. 返回员工的详细信息并按姓名排序
+select *
+from emp
+order by ENAME;
 # 18. 返回员工的信息并按员工的工作年限降序排列
+  select *
+from emp
+order by h;
 # 19. 返回员工的信息并按工作降序、工资升序排列
+  select *
+from emp
+order by SAL and JOB desc ;
 # 20. 返回员工的姓名、雇佣年份和月份，并按月份和雇佣日期排序
 # 21. 计算员工的日薪，每月按 30 天
   select *

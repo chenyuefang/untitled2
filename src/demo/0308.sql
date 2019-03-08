@@ -33,8 +33,13 @@ select COMM
 from emp
 order by COMM; -- 空值认为是最小的值
 
+select *
+from emp
+# limit 3 offset  0; -- offest 偏移量
+ limit 3 offset  3;
+# limit 0,3;
 
-
+-- limit 在 order by 后面
 
 
 

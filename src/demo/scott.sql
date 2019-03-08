@@ -111,7 +111,7 @@ DROP TABLE IF EXISTS `salgrade`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `salgrade` (
-                          `GRADE` INT(11) DEFAULT NULL,
+                          `GRAED` INT(11) DEFAULT NULL,
                           `LOSAL` INT(11) DEFAULT NULL,
                           `HISAL` INT(11) DEFAULT NULL
 )

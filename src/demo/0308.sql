@@ -75,8 +75,14 @@ from emp as e;
 
 select *
 from scott.emp
-where COMM is unll;
+where COMM is null;
 
+update scott.emp
+set COMM =null
+where ENAME='7499';-- 修改奖金为null
+
+select ENAME ,SAL +ifnull(COMM,0) -- ifnull判断第一个元素comm是否为空，若不为空取com的值，若为空取0值
+from emp;
 
 
 

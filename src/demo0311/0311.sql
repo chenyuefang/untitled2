@@ -41,3 +41,27 @@ from scott.emp e
 select *
  from scott.v_name
 where ENAME='allen';
+
+select *
+from scott.emp
+where SAL>(
+  select SAL
+  from scott.emp
+  where ENAME='scott'
+  );--  sub query （非相关）子查询  子句可单独执行
+
+ start transaction ;-- DML
+
+ delete from scott.emp
+where ENAME='allen';
+
+select *
+from scott.emp;
+
+rollback ;-- 回滚
+commit ;-- 提交
+
+
+
+
+

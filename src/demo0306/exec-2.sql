@@ -76,7 +76,10 @@ where ;
        inner join dept d
   on e.DEPTNO = d.DEPTNO;
 # 17. 返回员工工作及其从事此工作的最低工资
-
+select JOB,LOSAL
+from scott.emp
+   inner join scott.salgrade s
+where ;
 # 18. 返回不同部门经理的最低工资
 
 # 19. 计算出员工的年薪，并且以年薪排序

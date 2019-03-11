@@ -124,8 +124,23 @@ from scott.emp
 group by JOB-- 按照工种来查询最大的雇佣日期和工种
 having JOB in ('clerk','manager');  -- 组检索 /where 行检索 / 投影  列检索
 
+select  abs(-1);
+select bin(-1);
+select pi();
+select rtrim('   test  ');
+select ltrim('   test  ');
+select trim('   test   ');
 
+select lower(ENAME)
+from scott.emp;
 
+select current_date;
+select now();
 
+select date_add(now(),interval 1 week );-- 显示一周以后的时间
 
+select dayofweek(now());-- 显示今天是一周的第几天
+select dayofweek('2019-3-10');
+select dayofweek('2019-3-16');
 
+select week(now());-- 显示当前周是一年的第几周

@@ -39,29 +39,57 @@ from scott.emp e
                   on e.DEPTNO = d.DEPTNO;
 
 select *
- from scott.v_name
-where ENAME='allen';
+from scott.v_name
+where ENAME = 'allen';
 
 select *
 from scott.emp
-where SAL>(
+where SAL > (
   select SAL
   from scott.emp
-  where ENAME='scott'
-  );--  sub query （非相关）子查询  子句可单独执行
+  where ENAME = 'scott'
+);--  sub query （非相关）子查询  子句可单独执行
 
- start transaction ;-- DML
+start transaction;-- DML （开启一个事务）
 
- delete from scott.emp
-where ENAME='allen';
+delete
+from scott.emp
+where ENAME = 'allen';
 
 select *
 from scott.emp;
 
-rollback ;-- 回滚
-commit ;-- 提交
+-- 结束事务
+rollback; -- 回滚
+commit;
+-- 提交 不会恢复
+
+-- DDL
+create table scott.test
+(
+  id int
+);-- commit（隐式结束一个事务）
 
 
+start transaction;-- DML （开启一个事务）
+delete
+from scott.emp
+where ENAME = 'jonse';
 
+savepoint a; -- 保留点
 
+delete
+from scott.emp
+where ENAME = 'martin';
 
+update scott.emp
+set SAL=2000
+where ENAME = 'martin';
+
+savepoint b;
+
+select *
+from scott.emp;
+
+rollback to a; -- 没有结束事务的功能
+rollback to b; -- 回到当前保留点的位置

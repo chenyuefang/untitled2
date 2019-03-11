@@ -93,3 +93,39 @@ from scott.emp;
 
 rollback to a; -- 没有结束事务的功能
 rollback to b; -- 回到当前保留点的位置
+
+select avg(SAL)
+from scott.emp;
+
+select sum(SAL)
+from scott.emp;
+
+select min(SAL),max(SAL)
+from scott.emp;
+
+select count(SAL)
+from scott.emp;
+
+select count(COMM)
+from scott.emp;
+
+select min(ENAME)
+from scott.emp;
+
+select sum(ENAME)
+from scott.emp;-- 无意义
+
+select DEPTNO,avg(SAL)
+from scott.emp
+group by DEPTNO;-- 分组查询，按部门编号
+
+select JOB,max(HIREDATE)
+from scott.emp
+group by JOB-- 按照工种来查询最大的雇佣日期和工种
+having JOB in ('clerk','manager');  -- 组检索 /where 行检索 / 投影  列检索
+
+
+
+
+
+

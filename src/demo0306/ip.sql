@@ -29,4 +29,12 @@ set min = trim(min),
     max = trim(max),
     loc = trim(loc);
 
+-- 166.111.3.207
+-- SQL
 
+select inet_aton('166.111.3.207'); -- inet :internet ston:address to number
+select inet_ntoa(2792293327);
+
+select *
+from db_ip.ip
+where inet_aton('166.111.3.207') between inet_aton(min) and inet_aton(max);

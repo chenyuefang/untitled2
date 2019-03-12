@@ -15,9 +15,12 @@ load data local infile 'd:/csdn.txt'
   fields terminated by '❤'
   (username, password, email)
   set id = null;
-
 select *
 from db_csdn.user;
 
 -- 查询排名前十的密码？
-
+select password,count(password)
+from db_csdn.user
+group by password
+order by 2 desc
+limit 10 offset 0;

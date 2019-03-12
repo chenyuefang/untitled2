@@ -1,66 +1,112 @@
-drop database if exists db_student;
-create database db_student;
+drop database if exists db_a;
+create database db_a;
 
-drop table if exists db_student.management;
-create table db_student.management(
-  id int auto_increment primary key  comment 'id PK',
-  user varchar(255) comment '用户名',
-  password int(20) comment '密码',
-  studentId int comment '学生 id',
-  activityId int comment '活动id'
-) comment '信息管理表';
+drop table if exists db_a.user;
+create table db_a.user
+(
+  id       int auto_increment primary key comment 'id PK',
+  username varchar(255) not null comment 'username NN',
+  password varchar(255) not null comment 'password NN',
+  role     int(1)       not null default 0 comment 'role 0-student 1-admin NN'
+) comment 'user table';
 
-drop table if exists db_student.student;
-create table db_student.student(
-  id int auto_increment primary key  comment 'id PK',
-  sno          varchar(255) comment '学号',
-  gender varchar(255) comment '性别',
-  name         varchar(20) comment '学生姓名',
-  activityId int comment '活动id'
-) comment '学生信息表';
+drop table if exists db_a.ctivity;
+create table db_a.activity
+(
+  id    int auto_increment primary key comment 'id PK',
+  title varchar(255) not null comment 'username NN'
+) comment 'activity table';
 
-drop table if exists db_student.activity;
-create table db_student.activity(
-  id int auto_increment primary key  comment 'id PK',
-  acname varchar(255) comment '活动名称'
-
-) comment '活动信息表';
+drop table if exists db_a.enroll;
+create table db_a.enroll
+(
+  id         int auto_increment primary key comment 'id PK',
+  time       datetime not null default now() comment 'enroll time NN',-- default 默认值
+  userId     int      not null comment 'user id FK',
+  activityId int      not null comment 'activity id FK'
+) comment 'user table';
 
 -- 为信息管理表追加外键约束
-alter table db_student.management
+alter table db_a.enroll
   add constraint
-    student_fk_stuedntId
-    foreign key (studentId)
-      references db_student.student(id);
+    student_fk_userId
+    foreign key (userId)
+      references db_a.user (id);
 
 -- 为信息管理表追加外键约束
-alter table db_student.management
+alter table db_a.enroll
   add constraint
     student_fk_activityId
     foreign key (activityId)
-      references db_student.activity(id);
+      references db_a.activity (id);
 
--- 为学生信息表追加外键约束
-alter table db_student.student
-  add constraint
-    student_fk_activityId
-    foreign key (activityId)
-      references db_student.activity(id);
+-- add admin
+insert into db_a.user value (null, 'admin', md5('123'), 1);
 
-desc db_student.student;
-desc db_student.activity;
+-- admin login 'xxx','yyy'
+select *
+from db_a.user
+where username = 'admin'
+  and password = md5('123');
 
-#insert into db_student.student value (001,'1850','male','Tom',1);
-#insert into db_student.student value (002,'1858','female','Mary',3);
-#insert into db_student.student value (003,'1850','male','Tom',1);
+-- create
+insert into db_a.activity value (null, '植物园--一日游');
+insert into db_a.activity value (null, '动物园--一日游');
 
-#insert into db_student.activity value (1,'踏青');
-#insert into db_student.activity value (2,'植树');
-#insert into db_student.activity value (3,'登山');
+-- delete
+delete  from db_a.activity
+where id=1;
+
+-- update
+update db_a.activity
+set title=' '
+where id=1;
+
+  -- retrieve
+  select *
+from db_a.activity;
+
+-- syudent sign up
+insert into db_a.user (username, password) value ('john', 'abc');
+insert into db_a.user (username, password) value ('Jerry', 'def');
+insert into db_a.user (username, password) value ('Tester', 'ghi');
+
+-- student sign in 'xxx','yyy'
+select *
+from db_a.user
+where username='Jerry'
+and password=md5('def');-- md5(): 加密
+
+#delete from db_a.user;
+#set foreign_key_checks = 0;
+#set foreign_key_checks = 1;
+#truncate db_a.user;
+
+-- student enroll
+insert into db_a.enroll(id, userId, activityId) value (null,2,2);
+insert into db_a.enroll(id, userId, activityId) value (null,3,2);
+
+-- admin sign in retrieve
+select u.username,a.title
+from db_a.user u
+       inner join db_a.enroll e
+                  on u.id = e.userId
+       inner join db_a.activity a
+                  on e.activityId=a.id;
+
+select  u.username,a.title
+from db_a.user u
+inner join db_a.enroll e
+on u.id = e.userId
+inner join db_a.activity a
+on e.activityId=a.id
+where a.id=1;;
 
 select *
-from db_student.student;
+from db_a.user;
+select *
+from db_a.activity;
 
 select *
-from db_student.activity;
+from db_a.enroll;
 

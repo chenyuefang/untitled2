@@ -10,9 +10,9 @@ create table db_csdn.user
  email varchar(255) not null  comment 'email NN'
 )comment 'uesr table';
 
-load data local infile 'd:/csdn.txt'
+load data local infile 'd:/www.csdn.net.sql'
   into table db_csdn.user
-  fields terminated by '❤'
+  fields terminated by '♥'
   (username, password, email)
   set id = null;
 select *

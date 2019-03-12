@@ -83,7 +83,7 @@ and password=md5('def');-- md5(): 加密
 #truncate db_a.user;
 
 -- student enroll
-insert into db_a.enroll(id, userId, activityId) value (null,2,2);
+insert into db_a.enroll(id, userId, activityId) value (null,2,3);
 insert into db_a.enroll(id, userId, activityId) value (null,3,2);
 
 -- admin sign in retrieve

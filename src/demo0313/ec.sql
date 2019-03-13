@@ -84,6 +84,3 @@ alter table db_ec1.pictures
       references db_ec1.product (id);
 select *
 from db_ec1.user;
-
-select *
-from db_ec1.user_info;

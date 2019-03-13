@@ -82,8 +82,6 @@ alter table db_ec1.pictures
     pictures_fk_productId
     foreign key (pruductId)
       references db_ec1.product (id);
-
-
 select *
 from db_ec1.user;
 

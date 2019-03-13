@@ -19,11 +19,35 @@ drop table if exists db_ec1.user_info;
 create table db_ec1.user_info
 (
   id int auto_increment primary key  comment 'id PK',
-  avatar varchar(255)  comment 'avatar',-- 头像
+  avatar varchar(255)  comment 'avatar',-- 头像  'xxx.jpg'
   gender char(2) comment 'gender',
   city varchar(255) comment 'city',
   userId int comment 'user id FK'
   ) comment 'user info table';
+
+drop table if exists db_ec1.category;
+create table db_ec1.category(
+  id int auto_increment not null primary key  comment 'id PK',
+  title varchar(255) not null comment 'title NN',
+  picture varchar(255) not null comment 'picture',
+  categoryId int comment 'parent category id PK'
+
+) comment 'category able';
+
+drop table if exists db_ec1.product;
+create table db_ec1.product
+(
+  id int auto_increment primary key  comment 'id PK',
+  title varchar(255) not null comment 'title NN',
+  price decimal(8,2) not null comment 'price NN',
+  originalprice decimal(8,2) comment 'original price',
+  -- slide picture?
+  -- detail picture?
+ # category varchar(255) not null comment 'category NN',  -- ?
+ categoryId int comment 'category id FK'
+
+  ) comment 'product table';
+
 
 alter table db_ec1.user_info
 add constraint

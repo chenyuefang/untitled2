@@ -67,8 +67,10 @@ alter table db_ec.user
 
 insert into db_ec.user value (01, '123@qq.com', '123', 010 - 12345678, 'Tom', 1, 001);
 insert into db_ec.user value (02, '456@qq.com', '456', 010 - 45678912, 'Jerry', 2, 002);
+
 insert into db_ec.product value (1, 'TOMFORD #80号', '口红', 355, '欧美', '0.3');
 insert into db_ec.product value (2, 'Chanel 5号', '香水', 765, '法国', '0.2');
+
 insert into db_ec.order value (001, '支付宝', '已发货', '天津市西青区', '10:00');
 insert into db_ec.order value (002, '微信', '开始揽件', '天津市北辰区', '12:45');
 
